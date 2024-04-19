@@ -43,8 +43,8 @@ ZMK_BEHAVIOR(mt_end,  hold_tap,  bindings = <&masked_end>, <&kp>; MT_CORE)
 
 #define NAV_LEFT  &mt_home 0   LEFT    // tap: left  | long-tap: beginning of line
 #define NAV_RIGHT &mt_end 0    RIGHT   // tap: right | long-tap: end       of line
-#define NAV_UP    &mt LG(HOME) UP      // tap: up    | long-tap: beginning of document
-#define NAV_DOWN  &mt LG(END)  DOWN    // tap: down  | long-tap: end       of document
+#define NAV_UP    &mt LG(UP)   UP      // tap: up    | long-tap: beginning of document
+#define NAV_DOWN  &mt LG(DOWN) DOWN    // tap: down  | long-tap: end       of document
 #define NAV_BSPC  &mt LG(BSPC) BSPC    // tap: bspc  | long-tap: delete word backward
 #define NAV_DEL   &mt LG(DEL)  DEL     // tap: del   | long-tap: delete word forward
 
@@ -124,6 +124,43 @@ ZMK_BEHAVIOR(bt_3, macro,
         = <&out OUT_BLE>,
           <&bt BT_SEL 3>;
 )
+
+/* Caps-word, num-word and smart-mouse */
+
+// tap: sticky-shift | shift + tap/ double-tap: caps-word | hold: shift
+ZMK_BEHAVIOR(smart_shft, mod_morph,
+    bindings = <&sk LSHFT>, <&caps_word>;
+    mods = <(MOD_LSFT)>;
+)
+
+// &caps_word {  // mods deactivate caps-word, requires PR #1451
+//     /delete-property/ ignore-modifiers;
+// };
+
+// // tap: num-word | double-tap: sticky num-layer | hold: num-layer
+// #define SMART_NUM &smart_num NUM 0
+// ZMK_BEHAVIOR(smart_num, hold_tap,
+//     flavor = "balanced";
+//     tapping-term-ms = <200>;
+//     quick-tap-ms = <QUICK_TAP_MS>;
+//     bindings = <&mo>, <&num_dance>;
+// )
+
+// ZMK_BEHAVIOR(num_dance, tap_dance,
+//     tapping-term-ms = <200>;
+//     bindings = <&num_word>, <&sl NUM>;  // reverse this for sticky-num on single tap
+// )
+
+// &num_word {  // num-word, requires PR #1451
+//     layers = <NUM>;
+//     continue-list = <BSPC DEL DOT COMMA PLUS MINUS STAR FSLH EQUAL>;
+// };
+
+// // Alt+Tab swapper, requires PR #1366
+// ZMK_BEHAVIOR(swapper, tri_state,
+//     bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
+//     ignored-key-positions = <LT2>;
+// )
 
 //////////////////////////////////////////////////////////////////////////
 //
@@ -214,7 +251,7 @@ ZMK_LAYER(base,
     &trans          &kp N1            &kp N2         &kp N3         &kp N4      &kp N5                                                                                                                                             &kp N6   &kp N7    &kp N8      &kp N9    &kp N0     &kp MINUS
     &kp TAB         &kp Q             &kp W          &kp F          &kp P       &kp G                                                                                                                                              &kp J    &kp L     &kp U       &kp Y     &kp SEMI   &kp BSLH
     &kp ESC         &kp A             &kp R          &kp S          &kp T       &kp D                                                                                                                                              &kp H    &kp N     &kp E       &kp I     &kp O      &kp SQT
-    &kp GRAVE       &kp Z             &kp X          &kp C          &kp V       &kp B   &kp LSHFT                       &kp LGUI                     &kp LCTRL  &kp RCTRL  &kp RGUI  &kp RSHFT                                     &kp K    &kp M     &kp COMMA   &kp DOT   &kp FSLH   &kp PG_UP
+    &kp GRAVE       &kp Z             &kp X          &kp C          &kp V       &kp B   &smart_shft                     &kp LGUI                     &kp LCTRL  &kp RCTRL  &kp RGUI                   &smart_shft                  &kp K    &kp M     &kp COMMA   &kp DOT   &kp FSLH   &kp PG_UP
     &magic Magic 0  &kp LG(LA(BSLH))  &kp LA(SPACE)  NAV_LEFT       NAV_RIGHT           &thumb_layer Symbols BSPC       &thumb_layer Cursor ENTER    &kp LALT   &kp RALT   &thumb_layer Numbers TAB   &thumb_layer Symbols SPACE   NAV_UP   NAV_DOWN  &kp LBKT    &kp RBKT  &kp PG_DN
 )
 
@@ -246,19 +283,19 @@ ZMK_LAYER(numbers,
 )
 
 ZMK_LAYER(cursor,
-    &none   &none   &none   &none   &none                                                                            &none         &none  &none  &none  &none
-    &none   &none   &none   &none   &none   &none                                                      &none         &none         &none  &none  &none  &none
-    &none   &none   &none   &none   &none   &none                                                      &none         &none         &none  &none  &none  &none
-    &none   &none   &none   &none   &none   &none                                                      &select_none  &extend_line  &extend_word  &none  &none  &none
-    &none   &none   &none   &none   &none   &none   &none  &none  &none  &none  &none  &none  &none    &kp LG(A)     &select_line  &select_word  &none  &none
-    &none   &none   &none   &none   &none           &none  &none  &none  &none  &none  &none  &none    &none         &none         &none         &none
+    &none   &none   &none   &none   &none                                                                   &none         &none         &none   &none  &none
+    &none   &none   &none   &none   &none   &none                                             &none         &none         &none         &none   &none  &none
+    &none   &none   &none   &none   &none   &none                                             &none         &none         &none         &none   &none  &none
+    &none   &none   &none   &none   &none   &none                                             &select_none  &extend_line  &extend_word  &none   &none  &none
+    &none   &none   &none   &none   &none   &none   &none  &none  &none  &none  &none  &none  &kp LG(A)     &select_line  &select_word  &none   &none  &none
+    &none   &none   &none   &none   &none           &none  &none  &none  &none  &none  &none  &none         &none         &none         &none   &none
 )
 
 // ZMK_LAYER(empty,
-//     &none   &none   &none   &none   &none                                                                     &none   &none  &none  &none  &none
-//     &none   &none   &none   &none   &none   &none                                                      &none  &none   &none  &none  &none  &none
-//     &none   &none   &none   &none   &none   &none                                                      &none  &none   &none  &none  &none  &none
-//     &none   &none   &none   &none   &none   &none                                                      &none  &none   &none  &none  &none  &none
-//     &none   &none   &none   &none   &none   &none   &none  &none  &none  &none  &none  &none  &none    &none  &none   &none  &none  &none
-//     &none   &none   &none   &none   &none           &none  &none  &none  &none  &none  &none  &none    &none  &none   &none  &none
+//     &none   &none   &none   &none   &none                                                            &none   &none  &none  &none  &none
+//     &none   &none   &none   &none   &none   &none                                             &none  &none   &none  &none  &none  &none
+//     &none   &none   &none   &none   &none   &none                                             &none  &none   &none  &none  &none  &none
+//     &none   &none   &none   &none   &none   &none                                             &none  &none   &none  &none  &none  &none
+//     &none   &none   &none   &none   &none   &none   &none  &none  &none  &none  &none  &none  &none  &none   &none  &none  &none  &none
+//     &none   &none   &none   &none   &none           &none  &none  &none  &none  &none  &none  &none  &none   &none  &none  &none
 // )
