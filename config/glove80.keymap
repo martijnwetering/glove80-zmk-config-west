@@ -40,46 +40,39 @@ ZMK_BEHAVIOR(thumb_layer, hold_tap,
     flavor = "balanced";
     tapping-term-ms = <200>;
     quick-tap-ms = <300>;
-    #binding-cells = <2>;
     bindings = <&mo>, <&kp>;
 )
 
 ZMK_BEHAVIOR(magic, hold_tap,
     flavor = "tap-preferred";
     tapping-term-ms = <200>;
-    #binding-cells = <2>;
     bindings = <&mo>, <&rgb_ug_status_macro>;
 )
 
 ZMK_BEHAVIOR(rgb_up_status_macro, macro,
-    #binding-cells = <0>;
     bindings
         = <&rgb_ug RGB_STATUS>;
 )
 
 ZMK_BEHAVIOR(bt_0, macro,
-    #binding-cells = <0>;
     bindings
         = <&out OUT_BLE>,
           <&bt BT_SEL 0>;
 )
 
 ZMK_BEHAVIOR(bt_1, macro,
-    #binding-cells = <0>;
     bindings
         = <&out OUT_BLE>,
           <&bt BT_SEL 1>;
 )
 
 ZMK_BEHAVIOR(bt_2, macro,
-    #binding-cells = <0>;
     bindings
         = <&out OUT_BLE>,
           <&bt BT_SEL 2>;
 )
 
 ZMK_BEHAVIOR(bt_3, macro,
-    #binding-cells = <0>;
     bindings
         = <&out OUT_BLE>,
           <&bt BT_SEL 3>;
