@@ -45,7 +45,7 @@ ZMK_BEHAVIOR(mt_end,  hold_tap,  bindings = <&masked_end>, <&kp>; MT_CORE)
 #define NAV_LEFT  &mt_home 0   LEFT    // tap: left  | long-tap: beginning of line
 #define NAV_RIGHT &mt_end 0    RIGHT   // tap: right | long-tap: end       of line
 #define NAV_UP    &mt LG(UP)   UP      // tap: up    | long-tap: beginning of document
-#define NAV_DOWN  &mt LG(DOWN) DOWN    // tap: down  | long-tap: end       of document
+#define NAV_DOWN  &mt LG(DOWN) DOWN09    // tap: down  | long-tap: end       of document
 #define NAV_BSPC  &mt LG(BSPC) BSPC    // tap: bspc  | long-tap: delete word backward
 #define NAV_DEL   &mt LG(DEL)  DEL     // tap: del   | long-tap: delete word forward
 
@@ -95,11 +95,17 @@ ZMK_COMBO(caps_word, &caps_word, 52 57, ALL, 50)
 SIMPLE_MORPH(lpar_lt, SFT, &kp LPAR, &kp LT)
 SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
 
+// tap: comma | shift + tap: semicolon | ctrl + shift + tap: <
+SIMPLE_MORPH(comma_morph, SFT, &kp COMMA, &kp SEMI)
+
+// tap: dot | shift + tap: colon | ctrl + shift + tap: >
+SIMPLE_MORPH(dot_morph, SFT, &kp DOT, &kp COLON)
+
 // Homerow mods
 
 #define KEYS_L LT0 LT1 LT2 LT3 LT4 LT5 LM0 LM1 LM2 LM3 LM4 LM5 LB0 LB1 LB2 LB3 LB4 LB5 LN0 LN1 LN2 LN3 LN4 LN5  // left hand
-#define KEYS_R RT0 RT1 RT2 RT3 RT4 RT5 RM0 RM1 RM2 RM3 RM4 RM5 RB0 RB1 RB2 RB3 RB4 RB5 RN0 RN1 RN2 RN3 RN4 RN5 // right hand
-#define THUMBS LH0 LH1 LH2 LH3 LH4 LH5 LH1 RH0 RH1 RH2 RH3 RH3 RH4 RH5                                      // thumbs
+#define KEYS_R RT0 RT1 RT2 RT3 RT4 RT5 RM0 RM1 RM2 RM3 RM4 RM5 RB0 RB1 RB2 RB3 RB4 RB5 RN0 RN1 RN2 RN3 RN4 RN5  // right hand
+#define THUMBS LH0 LH1 LH2 LH3 LH4 LH5 LH1 RH0 RH1 RH2 RH3 RH3 RH4 RH5                                          // thumbs
 
 #define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS) \
     ZMK_BEHAVIOR(NAME, hold_tap, \
@@ -160,7 +166,7 @@ ZMK_BEHAVIOR(bt_3, macro,
           <&bt BT_SEL 3>;
 )
 
-/* Caps-word, num-word and smart-mouse */
+// Caps-word and num-word
 
 // tap: sticky-shift | shift + tap/ double-tap: caps-word | hold: shift
 ZMK_BEHAVIOR(smart_shft, mod_morph,
@@ -168,34 +174,34 @@ ZMK_BEHAVIOR(smart_shft, mod_morph,
     mods = <(MOD_LSFT)>;
 )
 
-// &caps_word {  // mods deactivate caps-word, requires PR #1451
-//     /delete-property/ ignore-modifiers;
-// };
+&caps_word {  // mods deactivate caps-word, requires PR #1451
+    /delete-property/ ignore-modifiers;
+    continue-list = <UNDERSCORE MINUS PLUS DOT BSPC DEL COMMA FSLH>;
+};
 
-// // tap: num-word | double-tap: sticky num-layer | hold: num-layer
-// #define SMART_NUM &smart_num NUM 0
-// ZMK_BEHAVIOR(smart_num, hold_tap,
-//     flavor = "balanced";
-//     tapping-term-ms = <200>;
-//     quick-tap-ms = <QUICK_TAP_MS>;
-//     bindings = <&mo>, <&num_dance>;
-// )
+// tap: num-word | double-tap: sticky num-layer | hold: num-layer
+#define SMART_NUM &smart_num NUM 0
+ZMK_BEHAVIOR(smart_num, hold_tap,
+    flavor = "balanced";
+    tapping-term-ms = <200>;
+    quick-tap-ms = <QUICK_TAP_MS>;
+    bindings = <&mo>, <&num_dance>;
+)
 
-// ZMK_BEHAVIOR(num_dance, tap_dance,
-//     tapping-term-ms = <200>;
-//     bindings = <&num_word>, <&sl NUM>;  // reverse this for sticky-num on single tap
-// )
+ZMK_BEHAVIOR(num_dance, tap_dance,
+    tapping-term-ms = <200>;
+    bindings = <&num_word>, <&sl NUM>;  // reverse this for sticky-num on single tap
+)
 
-// &num_word {  // num-word, requires PR #1451
-//     layers = <NUM>;
-//     continue-list = <BSPC DEL DOT COMMA PLUS MINUS STAR FSLH EQUAL>;
-// };
+&num_word {  // num-word, requires PR #1451
+    layers = <Numbers>;
+    continue-list = <BSPC DEL DOT COMMA PLUS MINUS STAR FSLH EQUAL>;
+};
 
-// // Alt+Tab swapper, requires PR #1366
-// ZMK_BEHAVIOR(swapper, tri_state,
-//     bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
-//     ignored-key-positions = <LT2>;
-// )
+// Alt+Tab swapper, requires PR #1366
+ZMK_BEHAVIOR(swapper, tri_state,
+    bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
+)
 
 //////////////////////////////////////////////////////////////////////////
 //
@@ -283,11 +289,11 @@ ZMK_BEHAVIOR(extend_line_left, macro,
 
 ZMK_LAYER(base,
     &kp F1          &kp F2            &kp F3         &kp F4         &kp F5                                                                                                                                                               &kp F6        &kp F7       &kp F8       &kp F9       &kp F10
-    &trans          &kp N1            &kp N2         &kp N3         &kp N4        &kp N5                                                                                                                                        &kp N6   &kp N7        &kp N8       &kp N9       &kp N0       &kp MINUS
+    &swapper        &kp N1            &kp N2         &kp N3         &kp N4        &kp N5                                                                                                                                        &kp N6   &kp N7        &kp N8       &kp N9       &kp N0       &kp MINUS
     &kp TAB         &kp Q             &kp W          &kp F          &kp P         &kp G                                                                                                                                         &kp J    &kp L         &kp U        &kp Y        &kp SEMI     &kp BSLH
     &kp ESC         &hml LCTRL A      &hml LALT R    &hml LGUI S    &hml LSHFT T  &kp D                                                                                                                                         &kp H    &hmr LSHFT N  &hmr LGUI E  &hmr LALT I  &hmr LCTRL O &kp SQT
-    &kp GRAVE       &kp Z             &kp X          &kp C          &kp V         &kp B   &smart_shft                 &kp LGUI                    &kp LCTRL  &kp RCTRL  &kp RGUI                   &smart_shft                  &kp K    &kp M         &kp COMMA    &kp DOT      &kp FSLH     &kp PG_UP
-    &magic Magic 0  &kp LG(LA(BSLH))  &kp LA(SPACE)  NAV_LEFT       NAV_RIGHT             &thumb_layer Symbols BSPC   &thumb_layer Cursor ENTER   &kp LALT   &kp RALT   &thumb_layer Numbers TAB   &thumb_layer Symbols SPACE   NAV_UP   NAV_DOWN      &kp LBKT     &kp RBKT     &kp PG_DN
+    &kp GRAVE       &kp Z             &kp X          &kp C          &kp V         &kp B   &smart_shft                 &kp LGUI                    &kp LCTRL  &kp RCTRL  &kp RGUI    &smart_shft                  &kp K    &kp M          &comma_morph  &dot_morph   &kp FSLH     &kp PG_UP
+    &magic Magic 0  &kp LG(LA(BSLH))  &kp LA(SPACE)  &kp LEFT       &kp RIGHT             &thumb_layer Symbols BSPC   &thumb_layer Cursor ENTER   &kp LALT   &kp RALT   SMART_NUM   &thumb_layer Symbols SPACE   &kp UP   &kp DOWN       &kp LBKT      &kp RBKT     &kp PG_DN
 )
 
 ZMK_LAYER(symbols,
