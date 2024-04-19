@@ -29,6 +29,26 @@
 #define LAYER_Lower 0
 #endif
 
+// MARK: Nav cluster
+
+// long-tap action on hold, short-tap action on all interrupts
+#define MT_CORE \
+    flavor = "tap-preferred"; \
+    tapping-term-ms = <220>; \
+    quick-tap-ms = <220>; \
+    hold-trigger-key-positions = <0>;
+
+&mt { MT_CORE };
+ZMK_BEHAVIOR(mt_home, hold_tap, bindings = <&masked_home>, <&kp>; MT_CORE)
+ZMK_BEHAVIOR(mt_end,  hold_tap,  bindings = <&masked_end>, <&kp>; MT_CORE)
+
+#define NAV_LEFT  &mt_home 0   LEFT    // tap: left  | long-tap: beginning of line
+#define NAV_RIGHT &mt_end 0    RIGHT   // tap: right | long-tap: end       of line
+#define NAV_UP    &mt LC(HOME) UP      // tap: up    | long-tap: beginning of document
+#define NAV_DOWN  &mt LC(END)  DOWN    // tap: down  | long-tap: end       of document
+#define NAV_BSPC  &mt LC(BSPC) BSPC    // tap: bspc  | long-tap: delete word backward
+#define NAV_DEL   &mt LC(DEL)  DEL     // tap: del   | long-tap: delete word forward
+
 // MARK: Global settings
 
 #define QUICK_TAP_MS 175
@@ -182,12 +202,12 @@ ZMK_BEHAVIOR(extend_line_left, macro,
 // MARK: Layers
 
 ZMK_LAYER(base,
-    &kp F1          &kp F2            &kp F3         &kp F4     &kp F5                                                                                                                                                                  &kp F6    &kp F7      &kp F8    &kp F9     &kp F10
-    &trans          &kp N1            &kp N2         &kp N3     &kp N4      &kp N5                                                                                                                                             &kp N6   &kp N7    &kp N8      &kp N9    &kp N0     &kp MINUS
-    &kp TAB         &kp Q             &kp W          &kp F      &kp P       &kp G                                                                                                                                              &kp J    &kp L     &kp U       &kp Y     &kp SEMI   &kp BSLH
-    &kp ESC         &kp A             &kp R          &kp S      &kp T       &kp D                                                                                                                                              &kp H    &kp N     &kp E       &kp I     &kp O      &kp SQT
-    &kp GRAVE       &kp Z             &kp X          &kp C      &kp V       &kp B   &kp LSHFT                       &kp LGUI                     &kp LCTRL  &kp RCTRL  &kp RGUI  &kp RSHFT                                     &kp K    &kp M     &kp COMMA   &kp DOT   &kp FSLH   &kp PG_UP
-    &magic Magic 0  &kp LG(LA(BSLH))  &kp LA(SPACE)  &kp LEFT   &kp RIGHT           &thumb_layer Symbols BACKSPACE  &thumb_layer Cursor ENTER    &kp LALT   &kp RALT   &thumb_layer Numbers TAB   &thumb_layer Symbols SPACE   &kp UP   &kp DOWN  &kp LBKT    &kp RBKT  &kp PG_DN
+    &kp F1          &kp F2            &kp F3         &kp F4         &kp F5                                                                                                                                                                  &kp F6    &kp F7      &kp F8    &kp F9     &kp F10
+    &trans          &kp N1            &kp N2         &kp N3         &kp N4      &kp N5                                                                                                                                             &kp N6   &kp N7    &kp N8      &kp N9    &kp N0     &kp MINUS
+    &kp TAB         &kp Q             &kp W          &kp F          &kp P       &kp G                                                                                                                                              &kp J    &kp L     &kp U       &kp Y     &kp SEMI   &kp BSLH
+    &kp ESC         &kp A             &kp R          &kp S          &kp T       &kp D                                                                                                                                              &kp H    &kp N     &kp E       &kp I     &kp O      &kp SQT
+    &kp GRAVE       &kp Z             &kp X          &kp C          &kp V       &kp B   &kp LSHFT                       &kp LGUI                     &kp LCTRL  &kp RCTRL  &kp RGUI  &kp RSHFT                                     &kp K    &kp M     &kp COMMA   &kp DOT   &kp FSLH   &kp PG_UP
+    &magic Magic 0  &kp LG(LA(BSLH))  &kp LA(SPACE)  NAV_LEFT       NAV_RIGHT           &thumb_layer Symbols NAV_BSPC   &thumb_layer Cursor ENTER    &kp LALT   &kp RALT   &thumb_layer Numbers TAB   &thumb_layer Symbols SPACE   NAV_UP   NAV_DOWN  &kp LBKT    &kp RBKT  &kp PG_DN
 )
 
 ZMK_LAYER(symbols,
