@@ -22,6 +22,7 @@
 #define Magic 2
 #define Numbers 3
 #define Factory 4
+#define Cursor 5
 
 /* To deal with the situation where there is no Lower layer, to keep &lower happy */
 #ifndef LAYER_Lower
@@ -186,7 +187,7 @@ ZMK_LAYER(base,
     &kp TAB         &kp Q             &kp W          &kp F      &kp P       &kp G                                                                                                                                              &kp J    &kp L     &kp U       &kp Y     &kp SEMI   &kp BSLH
     &kp ESC         &kp A             &kp R          &kp S      &kp T       &kp D                                                                                                                                              &kp H    &kp N     &kp E       &kp I     &kp O      &kp SQT
     &kp GRAVE       &kp Z             &kp X          &kp C      &kp V       &kp B   &kp LSHFT                       &kp LGUI                     &kp LCTRL  &kp RCTRL  &kp RGUI  &kp RSHFT                                     &kp K    &kp M     &kp COMMA   &kp DOT   &kp FSLH   &kp PG_UP
-    &magic Magic 0  &kp LG(LA(BSLH))  &kp LA(SPACE)  &kp LEFT   &kp RIGHT           &thumb_layer Symbols BACKSPACE  &thumb_layer Numbers ENTER   &kp LALT   &kp RALT   &thumb_layer Numbers TAB   &thumb_layer Symbols SPACE   &kp UP   &kp DOWN  &kp LBKT    &kp RBKT  &kp PG_DN
+    &magic Magic 0  &kp LG(LA(BSLH))  &kp LA(SPACE)  &kp LEFT   &kp RIGHT           &thumb_layer Symbols BACKSPACE  &thumb_layer Cursor ENTER    &kp LALT   &kp RALT   &thumb_layer Numbers TAB   &thumb_layer Symbols SPACE   &kp UP   &kp DOWN  &kp LBKT    &kp RBKT  &kp PG_DN
 )
 
 ZMK_LAYER(symbols,
@@ -215,3 +216,21 @@ ZMK_LAYER(numbers,
     &none   &none   &kp 1   &kp 2   &kp 3   &kp STAR    &none   &none   &none      &trans  &trans   &trans    &kp STAR   &kp N1  &kp N2  &kp N3  &kp FSLH   &none
     &none   &none   &none   &none   &none               &kp N0  &kp DOT &kp COMMA  &trans  &trans   &trans    &none      &none   &none   &none   &none
 )
+
+ZMK_LAYER(cursor,
+    &none   &none   &none   &none   &none                                                                            &none         &none  &none  &none  &none
+    &none   &none   &none   &none   &none   &none                                                      &none         &none         &none  &none  &none  &none
+    &none   &none   &none   &none   &none   &none                                                      &none         &none         &none  &none  &none  &none
+    &none   &none   &none   &none   &none   &none                                                      &select_none  &extend_line  &extend_word  &none  &none  &none
+    &none   &none   &none   &none   &none   &none   &none  &none  &none  &none  &none  &none  &none    &kp LG(A)     &select_line  &select_word  &none  &none
+    &none   &none   &none   &none   &none           &none  &none  &none  &none  &none  &none  &none    &none         &none         &none         &none
+)
+
+// ZMK_LAYER(empty,
+//     &none   &none   &none   &none   &none                                                                     &none   &none  &none  &none  &none
+//     &none   &none   &none   &none   &none   &none                                                      &none  &none   &none  &none  &none  &none
+//     &none   &none   &none   &none   &none   &none                                                      &none  &none   &none  &none  &none  &none
+//     &none   &none   &none   &none   &none   &none                                                      &none  &none   &none  &none  &none  &none
+//     &none   &none   &none   &none   &none   &none   &none  &none  &none  &none  &none  &none  &none    &none  &none   &none  &none  &none
+//     &none   &none   &none   &none   &none           &none  &none  &none  &none  &none  &none  &none    &none  &none   &none  &none
+// )
