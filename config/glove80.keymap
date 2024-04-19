@@ -131,16 +131,16 @@ ZMK_BEHAVIOR(thumb_layer, hold_tap,
     bindings = <&mo>, <&kp>;
 )
 
-ZMK_BEHAVIOR(rgb_ug_status_macro, macro,
-    bindings
-        = <&rgb_ug RGB_STATUS>;
-)
+// Glove80 specific behaviors, they don't work with Urob's ZMK fork
+// ZMK_BEHAVIOR(rgb_ug_status_macro, macro,
+//     bindings = <&rgb_ug RGB_STATUS>;
+// )
 
-ZMK_BEHAVIOR(magic, hold_tap,
-    flavor = "tap-preferred";
-    tapping-term-ms = <200>;
-    bindings = <&mo>, <&rgb_ug_status_macro>;
-)
+// ZMK_BEHAVIOR(magic, hold_tap,
+//     flavor = "tap-preferred";
+//     tapping-term-ms = <200>;
+//     bindings = <&mo>, <&rgb_ug_status_macro>;
+// )
 
 ZMK_BEHAVIOR(bt_0, macro,
     bindings
@@ -288,12 +288,12 @@ ZMK_BEHAVIOR(extend_line_left, macro,
 // MARK: Layers
 
 ZMK_LAYER(base,
-    &kp F1          &kp F2            &kp F3         &kp F4         &kp F5                                                                                                                                                               &kp F6        &kp F7       &kp F8       &kp F9       &kp F10
-    &swapper        &kp N1            &kp N2         &kp N3         &kp N4        &kp N5                                                                                                                                        &kp N6   &kp N7        &kp N8       &kp N9       &kp N0       &kp MINUS
-    &kp TAB         &kp Q             &kp W          &kp F          &kp P         &kp G                                                                                                                                         &kp J    &kp L         &kp U        &kp Y        &kp SEMI     &kp BSLH
-    &kp ESC         &hml LCTRL A      &hml LALT R    &hml LGUI S    &hml LSHFT T  &kp D                                                                                                                                         &kp H    &hmr LSHFT N  &hmr LGUI E  &hmr LALT I  &hmr LCTRL O &kp SQT
-    &kp GRAVE       &kp Z             &kp X          &kp C          &kp V         &kp B   &smart_shft                 &kp LGUI                    &kp LCTRL  &kp RCTRL  &kp RGUI    &smart_shft                  &kp K    &kp M          &comma_morph  &dot_morph   &kp FSLH     &kp PG_UP
-    &magic Magic 0  &kp LG(LA(BSLH))  &kp LA(SPACE)  &kp LEFT       &kp RIGHT             &thumb_layer Symbols BSPC   &thumb_layer Cursor ENTER   &kp LALT   &kp RALT   SMART_NUM   &thumb_layer Symbols SPACE   &kp UP   &kp DOWN       &kp LBKT      &kp RBKT     &kp PG_DN
+    &kp F1      &kp F2            &kp F3         &kp F4         &kp F5                                                                                                                                                               &kp F6        &kp F7       &kp F8       &kp F9       &kp F10
+    &swapper    &kp N1            &kp N2         &kp N3         &kp N4        &kp N5                                                                                                                                        &kp N6   &kp N7        &kp N8       &kp N9       &kp N0       &kp MINUS
+    &kp TAB     &kp Q             &kp W          &kp F          &kp P         &kp G                                                                                                                                         &kp J    &kp L         &kp U        &kp Y        &kp SEMI     &kp BSLH
+    &kp ESC     &hml LCTRL A      &hml LALT R    &hml LGUI S    &hml LSHFT T  &kp D                                                                                                                                         &kp H    &hmr LSHFT N  &hmr LGUI E  &hmr LALT I  &hmr LCTRL O &kp SQT
+    &kp GRAVE   &kp Z             &kp X          &kp C          &kp V         &kp B   &smart_shft                 &kp LGUI                    &kp LCTRL  &kp RCTRL  &kp RGUI    &smart_shft                  &kp K    &kp M          &comma_morph  &dot_morph   &kp FSLH     &kp PG_UP
+    &mo Magic   &kp LG(LA(BSLH))  &kp LA(SPACE)  &kp LEFT       &kp RIGHT             &thumb_layer Symbols BSPC   &thumb_layer Cursor ENTER   &kp LALT   &kp RALT   SMART_NUM   &thumb_layer Symbols SPACE   &kp UP   &kp DOWN       &kp LBKT      &kp RBKT     &kp PG_DN
 )
 
 ZMK_LAYER(symbols,
@@ -302,7 +302,7 @@ ZMK_LAYER(symbols,
     &trans          &kp CARET     &kp AMPS    &kp STAR    &kp PLUS   &kp PIPE                                                                                                      &kp LC(N5)      &kp LC(N6)     &kp LPAR      &kp RPAR      &trans  &trans
     &trans          &kp GRAVE     &kp DLLR    &kp PRCNT   &kp EQUAL  &kp MINUS                                                                                                     &kp LG(LS(A))   &kp LG(LS(O))  &kp LBRC      &kp RBRC      &trans  &trans
     &trans          &kp TILDE     &kp EXCL    &kp AT      &kp HASH   &kp UNDER  &kp LG(LS(J))      &kp LG(LC(J))      &trans  &kp LG(LS(F))  &kp LG(LA(LBKT))  &kp LG(LA(RBKT))    &kp LG(B)       &kp LG(R)      &kp LBKT      &kp RBKT      &trans  &trans
-    &magic Magic 0  &kp CAPS      &kp INS     &kp F11     &kp F12               &kp LG(LC(LEFT))   &kp LG(LC(RIGHT))  &trans  &trans         &trans            &trans              &kp LG(LC(R))   &trans         &trans        &trans        &trans
+    &mo Magic       &kp CAPS      &kp INS     &kp F11     &kp F12               &kp LG(LC(LEFT))   &kp LG(LC(RIGHT))  &trans  &trans         &trans            &trans              &kp LG(LC(R))   &trans         &trans        &trans        &trans
 )
 
 ZMK_LAYER(magic,
