@@ -131,15 +131,15 @@ ZMK_BEHAVIOR(thumb_layer, hold_tap,
     bindings = <&mo>, <&kp>;
 )
 
+ZMK_BEHAVIOR(rgb_ug_status_macro, macro,
+    bindings
+        = <&rgb_ug RGB_STATUS>;
+)
+
 ZMK_BEHAVIOR(magic, hold_tap,
     flavor = "tap-preferred";
     tapping-term-ms = <200>;
     bindings = <&mo>, <&rgb_ug_status_macro>;
-)
-
-ZMK_BEHAVIOR(rgb_ug_status_macro, macro,
-    bindings
-        = <&rgb_ug RGB_STATUS>;
 )
 
 ZMK_BEHAVIOR(bt_0, macro,
