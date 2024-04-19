@@ -49,7 +49,7 @@ ZMK_BEHAVIOR(magic, hold_tap,
     bindings = <&mo>, <&rgb_ug_status_macro>;
 )
 
-ZMK_BEHAVIOR(rgb_up_status_macro, macro,
+ZMK_BEHAVIOR(rgb_ug_status_macro, macro,
     bindings
         = <&rgb_ug RGB_STATUS>;
 )
