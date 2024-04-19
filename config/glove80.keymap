@@ -216,7 +216,7 @@ ZMK_LAYER(base,
     &kp TAB         &kp Q             &kp W          &kp F          &kp P       &kp G                                                                                                                                              &kp J    &kp L     &kp U       &kp Y     &kp SEMI   &kp BSLH
     &kp ESC         &kp A             &kp R          &kp S          &kp T       &kp D                                                                                                                                              &kp H    &kp N     &kp E       &kp I     &kp O      &kp SQT
     &kp GRAVE       &kp Z             &kp X          &kp C          &kp V       &kp B   &kp LSHFT                       &kp LGUI                     &kp LCTRL  &kp RCTRL  &kp RGUI  &kp RSHFT                                     &kp K    &kp M     &kp COMMA   &kp DOT   &kp FSLH   &kp PG_UP
-    &magic Magic 0  &kp LG(LA(BSLH))  &kp LA(SPACE)  NAV_LEFT       NAV_RIGHT           &thumb_layer Symbols NAV_BSPC   &thumb_layer Cursor ENTER    &kp LALT   &kp RALT   &thumb_layer Numbers TAB   &thumb_layer Symbols SPACE   NAV_UP   NAV_DOWN  &kp LBKT    &kp RBKT  &kp PG_DN
+    &magic Magic 0  &kp LG(LA(BSLH))  &kp LA(SPACE)  NAV_LEFT       NAV_RIGHT           &thumb_layer Symbols NAV_BSPC   &thumb_layer CURSOR ENTER    &kp LALT   &kp RALT   &thumb_layer Numbers TAB   &thumb_layer Symbols SPACE   NAV_UP   NAV_DOWN  &kp LBKT    &kp RBKT  &kp PG_DN
 )
 
 ZMK_LAYER(symbols,
