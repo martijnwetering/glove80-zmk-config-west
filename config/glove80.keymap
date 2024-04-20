@@ -26,6 +26,7 @@
 #define Navigation 5
 
 #include "combos.dtsi" // Requires layer aliasses
+#include "mouse.dtsi"
 
 /* To deal with the situation where there is no Lower layer, to keep &lower happy */
 #ifndef LAYER_Lower
@@ -294,14 +295,14 @@ ZMK_BEHAVIOR(extend_line_left, macro,
 
 ZMK_LAYER(base,
     &kp F1      &kp F2            &kp F3         &kp F4         &kp F5                                                                                                                                                &kp F6        &kp F7        &kp F8       &kp F9        &kp F10
-    &swapper    &kp N1            &kp N2         &kp N3         &kp N4        &kp N5                                                                                                                         &kp N6   &kp N7        &kp N8        &kp N9       &kp N0        &swapper
+    DSK_MGR     &kp N1            &kp N2         &kp N3         &kp N4        &kp N5                                                                                                                         &kp N6   &kp N7        &kp N8        &kp N9       &kp N0        &kp PLUS
     &kp ESC     &kp Q             &kp W          &kp F          &kp P         &kp G                                                                                                                          &kp J    &kp L         &kp U         &kp Y        &kp SEMI      &kp MINUS
     &kp TAB     &hml LCTRL A      &hml LALT R    &hml LGUI S    &hml LSHFT T  &kp D                                                                                                                          &kp H    &hmr LSHFT N  &hmr LGUI E   &hmr LALT I  &hmr LCTRL O  &kp SQT
     &kp GRAVE   &kp Z             &kp X          &kp C          &kp V         &kp B   &smart_shft               &kp LGUI                       &kp LCTRL  &kp RCTRL  &kp RGUI    &smart_shft                 &kp K    &kp M         &comma_morph  &dot_morph   &kp FSLH      &kp PG_UP
     &mo System  &kp LG(LA(BSLH))  &kp LA(SPACE)  &kp LEFT       &kp RIGHT             &thumb_layer Coding BSPC  &thumb_layer Navigation ENTER  &kp LALT   &kp RALT   SMART_NUM   &thumb_layer Symbols SPACE           &kp UP        &kp DOWN      &kp LBKT     &kp RBKT      &kp PG_DN
 )
 
-ZMK_LAYER(sym,
+ZMK_LAYER(symbols,
     &kp C_BRI_DN  &kp C_BRI_UP  &kp C_PREV  &kp C_NEXT  &kp C_PP                                                                                             &none  &none  &none  &none  &none
     &trans        &trans        &trans      &trans      &trans     &kp PIPE                                                                           &none  &none  &none  &none  &none  &none
     &trans        &kp CARET     &kp AMPS    &kp STAR    &kp PLUS   &kp BSLH                                                                           &none  &none  &none  &none  &none  &none
@@ -319,7 +320,7 @@ ZMK_LAYER(coding,
     &none  &none  &none  &none  &none         &trans  &trans  &trans  &trans  &trans            &trans                              &kp LG(LC(R))  &trans        &trans        &trans  &trans
 )
 
-ZMK_LAYER(sys,
+ZMK_LAYER(system,
     &bt BT_CLR    &none            &none            &none            &none                                                                                           &none   &none   &none   &none  &bt BT_CLR_ALL
     &none         &none            &none            &none            &none            &none                                                                  &none   &none   &none   &none   &none  &none
     &none         &rgb_ug RGB_SPI  &rgb_ug RGB_SAI  &rgb_ug RGB_HUI  &rgb_ug RGB_BRI  &rgb_ug RGB_TOG                                                        &none   &none   &none   &none   &none  &none
@@ -328,7 +329,7 @@ ZMK_LAYER(sys,
     &none         &none            &none            &none            &none                             &bt_0   &bt_1  &out OUT_USB   &none   &none   &none           &none   &none   &none   &none  &to 4
 )
 
-ZMK_LAYER(num,
+ZMK_LAYER(numbers,
     &none   &none   &none   &none   &none                                                                          &none   &none      &none    &none  &none
     &none   &none   &none   &none   &none   &kp CARET                                                       &none  &none   &none      &none    &none  &none
     &none   &none   &kp N7  &kp N8  &kp N9  &kp PRCNT                                                       &none  &none   &none      &none    &none  &none
@@ -337,13 +338,13 @@ ZMK_LAYER(num,
     &none   &none   &none   &none   &none               &kp DOT &kp COMMA &trans &trans  CANCEL   &trans           &none   &none      &none    &none  &none
 )
 
-ZMK_LAYER(nav,
-    &none   &none   &none   &none   &none                                                                   &none         &none         &none    &none  &none
-    &none   &none   &none   &none   &none   &none                                             &none         &none         &none         &none    &none  &none
-    &none   &none   &none   &none   &none   &none                                             &kp HOME      &kp PG_UP     &kp PG_DN     &kp END  &none  &none
-    &none   &none   &none   &none   &none   &none                                             &select_none  &extend_line  &extend_word  &none    &none  &none
-    &none   &none   &none   &none   &none   &none   &none  &none  &none  &none  &none  &none  &kp LG(A)     &select_line  &select_word  &none    &none  &none
-    &none   &none   &none   &none   &none           &none  &none  &none  &none  &none  &none                &none         &none         &none    &none  &none
+ZMK_LAYER(navigation,
+    &none   &none   &none   &none  &none                                                                  &none         &none         &none     &none    &none
+    &none   &none   &none   &none  &none  &none                                             &none         &none         &none         &none     &none    &none
+    &none   &none   &none   &none  &none  &none                                             &none         &kp LS(TAB)   &swapper      &none     &none    &none
+    &none   &none   &none   &none  &none  &none                                             &select_none  &extend_line  &extend_word  U_WH_U    U_WH_L   &none
+    &none   &none   &none   &none  &none  &none   &none  &none  &none  &none  &none  &none  &kp LG(A)     &select_line  &select_word  U_WH_D    U_WH_R   &none
+    &none   &none   &none   &none  &none          &none  &none  &none  &none  &none  &none                &kp PG_UP     &kp PG_DN     &kp HOME  &kp END  &none
 )
 
 // MARK: Layer Template
