@@ -206,7 +206,7 @@ ZMK_BEHAVIOR(num_dance, tap_dance,
 // Alt+Tab swapper, requires PR #1366
 ZMK_BEHAVIOR(swapper, tri_state,
     bindings = <&kt LCMD>, <&kp TAB>, <&kt LCMD>;
-    ignored-key-positions = <LT5 LH5 RH5 LF1 LF2 RF1 RF2 LH2>; // Tab, Shift, Arrow key positions and DEL/BSPC to quit app/close window from altTab
+    ignored-key-positions = <LT5 LH5 RH5 LF1 LF2 RF1 RF2 LH2 RT1>; // Tab, Shift, Arrow key positions and DEL/BSPC to quit app/close window from altTab
 )
 
 //////////////////////////////////////////////////////////////////////////
@@ -296,9 +296,9 @@ ZMK_BEHAVIOR(extend_line_left, macro,
 ZMK_LAYER(base,
     &kp F1      &kp F2            &kp F3         &kp F4         &kp F5                                                                                                                                                &kp F6        &kp F7        &kp F8       &kp F9        &kp F10
     DSK_MGR     &kp N1            &kp N2         &kp N3         &kp N4        &kp N5                                                                                                                         &kp N6   &kp N7        &kp N8        &kp N9       &kp N0        &kp PLUS
-    &kp ESC     &kp Q             &kp W          &kp F          &kp P         &kp G                                                                                                                          &kp J    &kp L         &kp U         &kp Y        &kp SEMI      &kp MINUS
-    &kp TAB     &hml LCTRL A      &hml LALT R    &hml LGUI S    &hml LSHFT T  &kp D                                                                                                                          &kp H    &hmr LSHFT N  &hmr LGUI E   &hmr LALT I  &hmr LCTRL O  &kp SQT
-    &kp GRAVE   &kp Z             &kp X          &kp C          &kp V         &kp B   &smart_shft               &kp LGUI                       &kp LCTRL  &kp RCTRL  &kp RGUI    &smart_shft                 &kp K    &kp M         &comma_morph  &dot_morph   &kp FSLH      &kp PG_UP
+    &kp TAB     &kp Q             &kp W          &kp F          &kp P         &kp G                                                                                                                          &kp J    &kp L         &kp U         &kp Y        &kp SEMI      &kp MINUS
+    &kp ESC     &hml LCTRL A      &hml LALT R    &hml LGUI S    &hml LSHFT T  &kp D                                                                                                                          &kp H    &hmr LSHFT N  &hmr LGUI E   &hmr LALT I  &hmr LCTRL O  &kp SQT
+    &kp GRAVE   &kp Z             &kp X          &kp C          &kp V         &kp B   &kp TAB                   &kp LGUI                       &kp LCTRL  &kp RCTRL  &kp RGUI    &smart_shft                 &kp K    &kp M         &comma_morph  &dot_morph   &kp FSLH      &kp PG_UP
     &mo System  &kp LG(LA(BSLH))  &kp LA(SPACE)  &kp LEFT       &kp RIGHT             &thumb_layer Coding BSPC  &thumb_layer Navigation ENTER  &kp LALT   &kp RALT   SMART_NUM   &thumb_layer Symbols SPACE           &kp UP        &kp DOWN      &kp LBKT     &kp RBKT      &kp PG_DN
 )
 
