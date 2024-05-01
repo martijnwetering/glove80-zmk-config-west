@@ -267,12 +267,12 @@ ZMK_BEHAVIOR(select_line, mod_morph,
 ZMK_BEHAVIOR(select_line_right, macro,
     wait-ms = <SELECT_WORD_DELAY>;
     tap-ms = <SELECT_WORD_DELAY>;
-    bindings = <&kp HOME &kp LS(END)>;
+    bindings = <&kp LG(LEFT) &kp LS(LG(RIGHT))>;
 )
 ZMK_BEHAVIOR(select_line_left, macro,
     wait-ms = <SELECT_WORD_DELAY>;
     tap-ms = <SELECT_WORD_DELAY>;
-    bindings = <&kp END &kp LS(HOME)>;
+    bindings = <&kp LG(RIGHT) &kp LS(LG(LEFT))>;
 )
 
 // extend current selection by one line
@@ -283,12 +283,25 @@ ZMK_BEHAVIOR(extend_line, mod_morph,
 ZMK_BEHAVIOR(extend_line_right, macro,
     wait-ms = <SELECT_WORD_DELAY>;
     tap-ms = <SELECT_WORD_DELAY>;
-    bindings = <&kp LS(DOWN) &kp LS(END)>;
+    bindings = <&kp LS(DOWN) &kp LS(LG(RIGHT))>;
 )
 ZMK_BEHAVIOR(extend_line_left, macro,
     wait-ms = <SELECT_WORD_DELAY>;
     tap-ms = <SELECT_WORD_DELAY>;
-    bindings = <&kp LS(UP) &kp LS(HOME)>;
+    bindings = <&kp LS(UP) &kp LS(LG(LEFT))>;
+)
+
+// Swift string interpolation
+ZMK_BEHAVIOR(swift_si, macro,
+    wait-ms = <100>;
+    tap-ms = <5>;
+    bindings = <&kp FSLH &kp LPAR &kp RPAR>;
+)
+
+ZMK_BEHAVIOR(swift_arrow, macro,
+    wait-ms = <100>;
+    tap-ms = <5>;
+    bindings = <&kp MINUS &kp GT>;
 )
 
 // MARK: Layers
@@ -296,7 +309,7 @@ ZMK_BEHAVIOR(extend_line_left, macro,
 ZMK_LAYER(base,
     &kp F1      &kp F2            &kp F3         &kp F4         &kp F5                                                                                                                                                &kp F6        &kp F7        &kp F8       &kp F9        &kp F10
     DSK_MGR     &kp N1            &kp N2         &kp N3         &kp N4        &kp N5                                                                                                                         &kp N6   &kp N7        &kp N8        &kp N9       &kp N0        &kp PLUS
-    &kp TAB     &kp Q             &kp W          &kp F          &kp P         &kp G                                                                                                                          &kp J    &kp L         &kp U         &kp Y        &kp SEMI      &kp MINUS
+    CANCEL      &kp Q             &kp W          &kp F          &kp P         &kp G                                                                                                                          &kp J    &kp L         &kp U         &kp Y        &kp SEMI      &kp MINUS
     &kp ESC     &hml LCTRL A      &hml LALT R    &hml LGUI S    &hml LSHFT T  &kp D                                                                                                                          &kp H    &hmr LSHFT N  &hmr LGUI E   &hmr LALT I  &hmr LCTRL O  &kp SQT
     &kp GRAVE   &kp Z             &kp X          &kp C          &kp V         &kp B   &smart_shft               &kp LGUI                       &kp LCTRL  &kp RCTRL  &kp RGUI    &kp TAB                     &kp K    &kp M         &comma_morph  &dot_morph   &kp FSLH      &kp PG_UP
     &mo System  &kp LG(LA(BSLH))  &kp LA(SPACE)  &kp LEFT       &kp RIGHT             &thumb_layer Coding BSPC  &thumb_layer Navigation ENTER  &kp LALT   &kp RALT   SMART_NUM   &thumb_layer Symbols SPACE           &kp UP        &kp DOWN      &kp LBKT     &kp RBKT      &kp PG_DN
@@ -312,12 +325,12 @@ ZMK_LAYER(symbols,
 )
 
 ZMK_LAYER(coding,
-    &none  &none  &none  &none  &none                                                                                               &kp C_MUTE     &kp C_VOL_DN  &kp C_VOL_UP  &trans  &trans
-    &none  &none  &none  &none  &none  &none                                                                        &trans          &trans         &trans        &trans        &trans  &trans
-    &none  &none  &none  &none  &none  &none                                                                        &kp LC(N5)      &kp LC(N6)     &kp LPAR      &kp RPAR      &trans  &trans
-    &none  &none  &none  &none  &none  &none                                                                        &kp LG(LS(A))   &kp LG(LS(O))  &kp LBRC      &kp RBRC      &trans  &trans
-    &none  &none  &none  &none  &none  &none  &trans  &trans  &trans  &trans  &kp LG(LA(LBKT))  &kp LG(LA(RBKT))    &kp LG(B)       &kp LG(R)      &kp LBKT      &kp RBKT      &trans  &trans
-    &none  &none  &none  &none  &none         &trans  &trans  &trans  &trans  &trans            &trans                              &kp LG(LC(R))  &trans        &trans        &trans  &trans
+    &none  &none  &none  &none  &none                                                                                                 &kp C_MUTE     &kp C_VOL_DN  &kp C_VOL_UP  &trans  &trans
+    &none  &none  &none  &none  &none  &none                                                                        &kp &kp LG(LC(R)) &trans         &trans        &trans        &trans  &trans
+    &none  &none  &none  &none  &none  &none                                                                        &kp LC(N5)        &kp LC(N6)     &kp LPAR      &kp RPAR      &trans  &trans
+    &none  &none  &none  &none  &none  &none                                                                        &kp LG(LS(A))     &kp LG(LS(O))  &kp LBRC      &kp RBRC      &trans  &trans
+    &none  &none  &none  &none  &none  &none  &trans  &trans  &trans  &trans  &kp LG(LA(LBKT))  &kp LG(LA(RBKT))    &kp LG(B)         &kp LG(R)      &kp LBKT      &kp RBKT      &trans  &trans
+    &none  &none  &none  &none  &none         &trans  &trans  &trans  &trans  &trans            &trans                                &swift_si      &swift_arrow  &trans        &trans  &trans
 )
 
 ZMK_LAYER(system,
