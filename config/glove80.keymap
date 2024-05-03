@@ -295,7 +295,7 @@ ZMK_BEHAVIOR(extend_line_left, macro,
 ZMK_BEHAVIOR(swift_si, macro,
     wait-ms = <100>;
     tap-ms = <5>;
-    bindings = <&kp FSLH &kp LPAR &kp RPAR>;
+    bindings = <&kp BSLH &kp LPAR &kp RPAR>;
 )
 
 ZMK_BEHAVIOR(swift_arrow, macro,
