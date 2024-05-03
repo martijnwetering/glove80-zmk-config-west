@@ -325,12 +325,12 @@ ZMK_LAYER(symbols,
 )
 
 ZMK_LAYER(coding,
-    &none  &none  &none  &none  &none                                                                                                 &kp C_MUTE     &kp C_VOL_DN  &kp C_VOL_UP  &trans  &trans
-    &none  &none  &none  &none  &none  &none                                                                        &kp &kp LG(LC(R)) &trans         &trans        &trans        &trans  &trans
-    &none  &none  &none  &none  &none  &none                                                                        &kp LC(N5)        &kp LC(N6)     &kp LPAR      &kp RPAR      &trans  &trans
-    &none  &none  &none  &none  &none  &none                                                                        &kp LG(LS(A))     &kp LG(LS(O))  &kp LBRC      &kp RBRC      &trans  &trans
-    &none  &none  &none  &none  &none  &none  &trans  &trans  &trans  &trans  &kp LG(LA(LBKT))  &kp LG(LA(RBKT))    &kp LG(B)         &kp LG(R)      &kp LBKT      &kp RBKT      &trans  &trans
-    &none  &none  &none  &none  &none         &trans  &trans  &trans  &trans  &trans            &trans                                &swift_si      &swift_arrow  &trans        &trans  &trans
+    &none  &none  &none  &none  &none                                                                                              &kp C_MUTE     &kp C_VOL_DN  &kp C_VOL_UP  &trans  &trans
+    &none  &none  &none  &none  &none  &none                                                                        &kp LG(LC(R))  &trans         &trans        &trans        &trans  &trans
+    &none  &none  &none  &none  &none  &none                                                                        &kp LC(N5)     &kp LC(N6)     &kp LPAR      &kp RPAR      &trans  &trans
+    &none  &none  &none  &none  &none  &none                                                                        &kp LG(LS(A))  &kp LG(LS(O))  &kp LBRC      &kp RBRC      &trans  &trans
+    &none  &none  &none  &none  &none  &none  &trans  &trans  &trans  &trans  &kp LG(LA(LBKT))  &kp LG(LA(RBKT))    &kp LG(B)      &kp LG(R)      &kp LBKT      &kp RBKT      &trans  &trans
+    &none  &none  &none  &none  &none         &trans  &trans  &trans  &trans  &trans            &trans                             &swift_si      &swift_arrow  &trans        &trans  &trans
 )
 
 ZMK_LAYER(system,
